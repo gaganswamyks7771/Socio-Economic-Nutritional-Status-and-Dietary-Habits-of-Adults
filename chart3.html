@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Charts - Income and Nutritional Status</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f6f9;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #1a73e8;
+      }
+
+      .chart-box {
+        margin: 40px 0;
+      }
+
+      canvas {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .description {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Classification of Annual Income of the Population</h2>
+      <div class="chart-box">
+        <canvas id="incomeChart"></canvas>
+      </div>
+      <div class="description">
+        <p>The chart illustrates that the majority of the selected adult male (47.1%) and female (61.1%) population belong to the Low-Income Group (LIG). This reflects their economic status as daily wage workers with limited income sources. A smaller portion falls under the Lower Middle-Income Group (LMIG), while a very small number belong to Upper Middle-Income and High-Income Groups, with only one male in the HIG category.</p>
+      </div>
+
+      <h2>Evaluation of Nutritional Status of the Population (BMI)</h2>
+      <div class="chart-box">
+        <canvas id="bmiChart"></canvas>
+      </div>
+      <div class="description">
+        <p>According to WHO's Asian BMI classification, a majority of the population is categorized as overweight or obese. Only a small percentage of individuals fall into the normal or underweight categories, with possible contributing factors including sedentary lifestyles, unvaried staple food consumption, and genetic predisposition.</p>
+      </div>
+    </div>
+
+    <script>
+      const incomeChart = new Chart(document.getElementById("incomeChart"), {
+        type: "bar",
+        data: {
+          labels: ["LIG", "LMIG", "UMIG", "HIG"],
+          datasets: [
+            {
+              label: "Male (%)",
+              backgroundColor: "#42a5f5",
+              data: [47.1, 35.3, 11.8, 5.9],
+            },
+            {
+              label: "Female (%)",
+              backgroundColor: "#ef5350",
+              data: [61.1, 27.8, 11.1, 0],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Income Classification by Gender",
+              font: { size: 18 },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+            },
+          },
+        },
+      })
+
+      const bmiChart = new Chart(document.getElementById("bmiChart"), {
+        type: "bar",
+        data: {
+          labels: ["Underweight", "Normal", "Overweight", "Obese I", "Obese II"],
+          datasets: [
+            {
+              label: "Male (%)",
+              backgroundColor: "#26c6da",
+              data: [5.9, 29.4, 41.2, 17.6, 5.9],
+            },
+            {
+              label: "Female (%)",
+              backgroundColor: "#ab47bc",
+              data: [16.7, 16.7, 33.3, 22.2, 11.1],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Nutritional Status Based on BMI",
+              font: { size: 18 },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

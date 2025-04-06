@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dietary Intake Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #2c3e50;
+      }
+
+      .section {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 30px auto;
+        padding: 30px;
+        max-width: 900px;
+      }
+
+      canvas {
+        max-width: 100%;
+        margin-top: 20px;
+      }
+
+      .description {
+        margin: 20px 0;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Assessment on Dietary Intake</h1>
+
+    <div class="section">
+      <h2>Number of Meals Per Day</h2>
+      <p class="description">Among 35 respondents, 13 males and 11 females consumed three meals per day. A smaller portion consumed two meals (3 males and 7 females), and only 1 male had a single meal per day.</p>
+      <canvas id="mealsChart"></canvas>
+    </div>
+
+    <div class="section">
+      <h2>Food Frequency Patterns</h2>
+      <p class="description">All respondents were vegetarians. Daily consumption of rice was universal. Ragi, wheat, pulses like toor dal, cowpea, and vegetables formed a major part of the diet. Economic constraints influenced the limited intake of fruits, meat, and nuts.</p>
+      <canvas id="foodFrequencyChart"></canvas>
+    </div>
+
+    <script>
+      const mealsChart = new Chart(document.getElementById("mealsChart"), {
+        type: "bar",
+        data: {
+          labels: ["3 Meals (M)", "3 Meals (F)", "2 Meals (M)", "2 Meals (F)", "1 Meal (M)"],
+          datasets: [
+            {
+              label: "Number of Respondents",
+              data: [13, 11, 3, 7, 1],
+              backgroundColor: "#3498db",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "Meal Frequency Distribution",
+            },
+          },
+        },
+      })
+
+      const foodFrequencyChart = new Chart(document.getElementById("foodFrequencyChart"), {
+        type: "bar",
+        data: {
+          labels: ["Rice", "Wheat (Daily)", "Wheat (Weekly)", "Ragi (Daily)", "Ragi (Weekly)", "Toor Dal (Daily)", "Toor Dal (Weekly)", "Toor Dal (Fortnightly)", "Cow Pea (Weekly)", "Horse Gram (Daily)", "Horse Gram (Weekly)", "Horse Gram (Fortnightly)", "Green Leafy (Weekly)", "Fruits (Weekly/Fort.)", "Nuts (Fortnightly)", "Eggs (Weekly)"],
+          datasets: [
+            {
+              label: "% of Respondents",
+              data: [100, 26.4, 67.8, 58, 38, 7, 31.2, 56, 78, 17.2, 28, 46.7, 36, 50, 73, 18],
+              backgroundColor: "#2ecc71",
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "Food Frequency Distribution",
+            },
+          },
+          scales: {
+            x: { max: 100 },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

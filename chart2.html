@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Socioeconomic and Occupational Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #2c3e50;
+      }
+
+      .chart-container {
+        width: 40%;
+        margin: 40px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      canvas {
+        max-width: 100%;
+      }
+
+      .note {
+        font-size: 0.95rem;
+        color: #555;
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Socioeconomic and Occupational Analysis</h1>
+
+    <div class="chart-container">
+      <h2>Economic Status of Families</h2>
+      <canvas id="economicStatusChart"></canvas>
+      <div class="note">Fig: Economic status based on BPL/APL distribution</div>
+    </div>
+
+    <div class="chart-container">
+      <h2>Occupation Details of Respondents</h2>
+      <canvas id="occupationChart"></canvas>
+      <div class="note">Table 2: Occupation breakdown among male and female respondents</div>
+    </div>
+
+    <script>
+      // Economic Status Chart
+      new Chart(document.getElementById("economicStatusChart"), {
+        type: "pie",
+        data: {
+          labels: ["BPL - Below Poverty Line", "APL - Above Poverty Line"],
+          datasets: [
+            {
+              label: "Family Economic Status",
+              data: [92, 8],
+              backgroundColor: ["#3498db", "#f1c40f"],
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      })
+
+      // Occupation Chart
+      new Chart(document.getElementById("occupationChart"), {
+        type: "bar",
+        data: {
+          labels: ["Farmers", "Daily Wages", "Self-Employed", "Industrial Worker", "House Wife"],
+          datasets: [
+            {
+              label: "Female",
+              data: [4, 5, 2, 2, 5],
+              backgroundColor: "#e74c3c",
+            },
+            {
+              label: "Male",
+              data: [8, 5, 2, 2, 0],
+              backgroundColor: "#2ecc71",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0,
+              },
+              title: {
+                display: true,
+                text: "Number of Respondents",
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
